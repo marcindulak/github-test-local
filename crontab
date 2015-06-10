@@ -1,0 +1,4 @@
+# Run Sunday evening, clean the results with modification date older than two weeks
+00 20 * * * mkdir -p ~/github/test && /usr/sbin/tmpreaper -Mm 336 ~/github/test
+05 20 * * 0 EMAIL=yourmail@yourdomain sh ~/github/github.sh
+
