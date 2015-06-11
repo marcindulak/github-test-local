@@ -29,7 +29,7 @@ vagrant ssh centos7 -c "sudo su -c '. /etc/profile.d/modules.sh; module load mpi
 vagrant up centos6 centos6_lustre18 ubuntu12
 vagrant ssh centos6 -c "sudo su -c 'lfs df -h'"
 vagrant ssh centos6_lustre18 -c "sudo su -c 'lfs df -h'"
-vagrant ssh ubuntu12 -c "sudo su -c 'lfs df -h'"
+#vagrant ssh ubuntu12 -c "sudo su -c 'lfs df -h'"  # hangs
 #
 vagrant ssh oss02 -c "sudo su -c 'umount /lustre/ost02'"
 vagrant ssh oss01 -c "sudo su -c 'echo \"/dev/sdc /lustre/ost02 lustre defaults 0 0\" >> /etc/fstab'"
