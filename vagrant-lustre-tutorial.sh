@@ -31,6 +31,10 @@ vagrant ssh centos6 -c "sudo su -c 'lfs df -h'"
 vagrant ssh centos6_lustre18 -c "sudo su -c 'lfs df -h'"
 #vagrant ssh ubuntu12 -c "sudo su -c 'lfs df -h'"  # hangs
 #
+vagrant ssh centos6 -c "sudo su -c 'mkdir /lustre/vagrant'"
+vagrant ssh centos6 -c "sudo su -c 'chown vagrant.vagrant /lustre/vagrant'"
+vagrant ssh centos6 -c "sudo su - vagrant -c 'touch /lustre/vagrant/testfile'"
+#
 vagrant ssh oss02 -c "sudo su -c 'umount /lustre/ost02'"
 vagrant ssh oss01 -c "sudo su -c 'echo \"/dev/sdc /lustre/ost02 lustre defaults 0 0\" >> /etc/fstab'"
 vagrant ssh oss01 -c "sudo su -c 'mkdir -p /lustre/ost02'"
