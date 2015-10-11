@@ -2,6 +2,9 @@ rm -rf ~/VirtualBox\ VMs/*
 rm -rf ~/.vagrant.d/boxes/*
 killall VBoxHeadless 2> /dev/null
 STATUS='OK'
+sh ~/github/vagrant-systemimager-tutorial-centos6.sh > ~/github/vagrant-systemimager-tutorial-centos6.log 2>&1
+if ! test $? -eq 0; then echo | mailx -A ~/github/vagrant-systemimager-tutorial-centos6.log -s 'github FAIL: vagrant-systemimager-tutorial-centos6' ${EMAIL}; STATUS='FAIL'; fi
+#
 sh ~/github/irods-tutorial-centos6.sh > ~/github/irods-tutorial-centos6.log 2>&1
 if ! test $? -eq 0; then echo | mailx -A ~/github/irods-tutorial-centos6.log -s 'github FAIL: irods-tutorial-centos6' ${EMAIL}; STATUS='FAIL'; fi
 #
