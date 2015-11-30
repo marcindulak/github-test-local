@@ -1,7 +1,7 @@
 cd /scratch/ubuntu/github/test
-rm -rfv vagrant-opennebula-centos7
-git clone https://github.com/marcindulak/vagrant-opennebula-centos7.git
-cd vagrant-opennebula-centos7
+rm -rfv vagrant-opennebula-tutorial-centos7
+git clone https://github.com/marcindulak/vagrant-opennebula-tutorial-centos7.git
+cd vagrant-opennebula-tutorial-centos7
 vagrant plugin install vagrant-libvirt
 vagrant up --no-parallel
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onehost create node1 -i kvm -v kvm -n dummy'"
