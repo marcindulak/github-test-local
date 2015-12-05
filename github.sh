@@ -2,6 +2,9 @@ rm -rf ~/VirtualBox\ VMs/*
 rm -rf ~/.vagrant.d/boxes/*
 killall VBoxHeadless 2> /dev/null
 STATUS='OK'
+sh ~/github/vagrant-ceph-rbd-tutorial-centos7.sh > ~/github/vagrant-ceph-rbd-tutorial-centos7.log 2>&1
+if ! test $? -eq 0; then echo | mailx -A ~/github/vagrant-ceph-rbd-tutorial-centos7.log -s 'github FAIL: vagrant-ceph-rbd-tutorial-centos7' ${EMAIL}; STATUS='FAIL'; fi
+#
 sh ~/github/vagrant-opennebula-tutorial-centos7.sh > ~/github/vagrant-opennebula-tutorial-centos7.log 2>&1
 if ! test $? -eq 0; then echo | mailx -A ~/github/vagrant-opennebula-tutorial-centos7.log -s 'github FAIL: vagrant-opennebula-tutorial-centos7' ${EMAIL}; STATUS='FAIL'; fi
 #
@@ -23,8 +26,8 @@ if ! test $? -eq 0; then echo | mailx -A ~/github/vagrant-munin-tutorial.log -s 
 sh ~/github/puppet-nagios.sh > ~/github/puppet-nagios.log 2>&1
 if ! test $? -eq 0; then echo | mailx -A ~/github/puppet-nagios.log -s 'github FAIL: puppet-nagios' ${EMAIL}; STATUS='FAIL'; fi
 #
-sh ~/github/Clusters_From_Scratch-1.1-pcs.sh > ~/github/Clusters_From_Scratch-1.1-pcs.log 2>&1
-if ! test $? -eq 0; then echo | mailx -A ~/github/Clusters_From_Scratch-1.1-pcs.log -s 'github FAIL: Clusters_From_Scratch-1.1-pcs' ${EMAIL}; STATUS='FAIL'; fi
+sh ~/github/Clusters_From_Scratch-1.1-pcs-Fedora-21.sh > ~/github/Clusters_From_Scratch-1.1-pcs-Fedora-21.log 2>&1
+if ! test $? -eq 0; then echo | mailx -A ~/github/Clusters_From_Scratch-1.1-pcs-Fedora-21.log -s 'github FAIL: Clusters_From_Scratch-1.1-pcs-Fedora-21' ${EMAIL}; STATUS='FAIL'; fi
 #
 if [ "${STATUS}" = "OK" ];
 then
