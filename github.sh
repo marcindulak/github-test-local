@@ -7,6 +7,7 @@ sh ~/github/vagrant-ceph-rbd-tutorial-centos7.sh > ~/github/vagrant-ceph-rbd-tut
 if ! test $? -eq 0; then echo | mailx -A ~/github/vagrant-ceph-rbd-tutorial-centos7.log -s 'github FAIL: vagrant-ceph-rbd-tutorial-centos7' ${EMAIL}; STATUS='FAIL'; fi
 #
 for i in `VBoxManage list hostonlyifs | egrep '^Name:' | cut -d: -f2`; do VBoxManage hostonlyif remove $i; done
+virsh net-destroy vagrant-opennebula-tutorial-centos70
 sh ~/github/vagrant-opennebula-tutorial-centos7.sh > ~/github/vagrant-opennebula-tutorial-centos7.log 2>&1
 if ! test $? -eq 0; then echo | mailx -A ~/github/vagrant-opennebula-tutorial-centos7.log -s 'github FAIL: vagrant-opennebula-tutorial-centos7' ${EMAIL}; STATUS='FAIL'; fi
 #
