@@ -2,7 +2,7 @@ cd ~/github/test && \
 rm -rfv vagrant-lustre-tutorial && \
 git clone https://github.com/marcindulak/vagrant-lustre-tutorial.git && \
 cd vagrant-lustre-tutorial && \
-vagrant plugin install 'vagrant-reload' && \
+vagrant plugin install vagrant-reload && \
 vagrant up mds01 mds02 oss01 oss02 centos7 && \
 vagrant ssh centos7 -c "sudo su -c 'lctl dl'" && \
 vagrant ssh centos7 -c "sudo su -c 'lfs osts'" && \
@@ -34,6 +34,5 @@ vagrant ssh oss02 -c "sudo su -c 'umount /lustre/ost02'" && \
 vagrant ssh oss01 -c "sudo su -c 'echo \"/dev/sdc /lustre/ost02 lustre defaults 0 0\" >> /etc/fstab'" && \
 vagrant ssh oss01 -c "sudo su -c 'mkdir -p /lustre/ost02'" && \
 vagrant ssh oss01 -c "sudo su -c 'mount /lustre/ost02'" && \
-vagrant ssh centos7 -c "sudo su -c 'lfs df -h'" && \
-vagrant destroy -f && \
-vagrant plugin uninstall 'vagrant-reload'
+vagrant ssh centos7 -c "sudo su -c 'lfs df -h'"
+vagrant destroy -f

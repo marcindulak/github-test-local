@@ -12,5 +12,5 @@ vagrant ssh centos6 -c "sudo su -c 'echo \"[apache_*]\" > /etc/munin/plugin-conf
 vagrant ssh centos6 -c "sudo su -c 'service munin-node reload'" && \
 vagrant ssh centos6 -c "sudo su -c 'service httpd start'" && \
 sleep 360 && \
-vagrant ssh centos6 -c "sudo su -c 'curl http://localhost/'" && \
+vagrant ssh centos6 -c "sudo su -c 'curl http://localhost/'"
 vagrant destroy -f

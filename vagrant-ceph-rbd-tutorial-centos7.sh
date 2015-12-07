@@ -35,5 +35,5 @@ vagrant ssh client0 -c "sudo su - ceph -c 'rbd create rbd0 --size 128 -m server0
 vagrant ssh client0 -c "sudo su - ceph -c 'sudo rbd map rbd0 --name client.admin -m server0,server1,server2 -k /etc/ceph/ceph.client.admin.keyring'" && \
 vagrant ssh client0 -c "sudo su - -c 'mkfs.xfs -L rbd0 /dev/rbd0'" && \
 vagrant ssh client0 -c "sudo su - -c 'mkdir /mnt/rbd0'" && \
-vagrant ssh client0 -c "sudo su - -c 'mount /dev/rbd0 /mnt/rbd0'" && \
+vagrant ssh client0 -c "sudo su - -c 'mount /dev/rbd0 /mnt/rbd0'"
 vagrant destroy -f
