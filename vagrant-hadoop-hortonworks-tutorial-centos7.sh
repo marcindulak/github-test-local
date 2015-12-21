@@ -38,11 +38,11 @@ vagrant ssh gateway0 -c "sudo su - vagrant -c 'wget https://raw.githubuserconten
 vagrant ssh gateway0 -c "sudo su - vagrant -c 'hadoop fs -mkdir -p /user/vagrant/WordCount/input'"&& \
 vagrant ssh gateway0 -c "sudo su - vagrant -c 'hadoop fs -put LICENSE /user/vagrant/WordCount/input'"&& \
 vagrant ssh gateway0 -c "sudo su - vagrant -c 'hadoop fs -cat /user/vagrant/WordCount/input/*'"&& \
-vagrant ssh gateway0 -c "sudo su - vagrant -c 'wget https://raw.githubusercontent.com/marcindulak/vagrant-hadoop-hortonworks-tutorial-centos7/master/WordCount.sh"&& \
-vagrant ssh gateway0 -c "sudo su - vagrant -c 'sh WordCount.sh"&& \
+vagrant ssh gateway0 -c "sudo su - vagrant -c 'wget https://raw.githubusercontent.com/marcindulak/vagrant-hadoop-hortonworks-tutorial-centos7/master/WordCount.sh'"&& \
+vagrant ssh gateway0 -c "sudo su - vagrant -c 'sh WordCount.sh'"&& \
 vagrant ssh gateway0 -c "sudo su - vagrant -c 'hadoop fs -cat /user/vagrant/WordCount/mapreduce-output/*'"&& \
-vagrant ssh gateway0 -c "sudo su - vagrant -c 'wget https://raw.githubusercontent.com/marcindulak/vagrant-hadoop-hortonworks-tutorial-centos7/master/wc.pig"&& \
-vagrant ssh gateway0 -c "sudo su - vagrant -c 'pig wc.pig"&& \
+vagrant ssh gateway0 -c "sudo su - vagrant -c 'wget https://raw.githubusercontent.com/marcindulak/vagrant-hadoop-hortonworks-tutorial-centos7/master/wc.pig'"&& \
+vagrant ssh gateway0 -c "sudo su - vagrant -c 'pig wc.pig'"&& \
 vagrant ssh gateway0 -c "sudo su - vagrant -c 'hadoop fs -cat /user/vagrant/WordCount/pig-mapreduce-output/*'"
 vagrant destroy -f
 
