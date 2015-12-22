@@ -1,5 +1,3 @@
-cd /scratch/ubuntu/github/test && \
-rm -rfv vagrant-opennebula-tutorial-centos7 && \
 git clone https://github.com/marcindulak/vagrant-opennebula-tutorial-centos7.git && \
 cd vagrant-opennebula-tutorial-centos7 && \
 vagrant plugin install vagrant-libvirt && \
@@ -19,5 +17,5 @@ vagrant ssh frontend -c "sudo su - oneadmin -c 'onetemplate instantiate ttylinux
 sleep 300 && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onevm list'" && \
 vagrant ssh frontend -c "sudo su - -c 'yum -y install sshpass'" && \
-vagrant ssh frontend -c "sshpass -p password ssh -o StrictHostKeyChecking=no root@192.168.10.100 '/sbin/ifconfig eth0'"
+vagrant ssh frontend -c "sshpass -p password ssh -o StrictHostKeyChecking=no root@192.168.10.100 '/sbin/ifconfig eth0'" && \
 vagrant destroy -f
