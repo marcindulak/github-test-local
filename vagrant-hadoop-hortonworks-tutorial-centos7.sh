@@ -27,7 +27,7 @@ curl -H "X-Requested-By: ambari" -X POST -u admin:admin http://localhost:8080/ap
 curl -H "X-Requested-By: ambari" -X GET -u admin:admin http://localhost:8080/api/v1/blueprints && \
 curl -H "X-Requested-By: ambari" -X POST -u admin:admin http://localhost:8080/api/v1/clusters/vagrant -d @vagrant-cluster.json && \
 sleep 3000 && \
-curl -H "X-Requested-By: ambari" -X GET -u admin:admin http://localhost:8080/api/v1/clusters/c1/alerts?Alert/state!=OK && \
+curl -H "X-Requested-By: ambari" -X GET -u admin:admin http://localhost:8080/api/v1/clusters/vagrant/alerts?Alert/state!=OK && \
 vagrant ssh gateway0 -c "sudo su - hdfs -c 'hdfs dfsadmin -report'" && \
 vagrant ssh gateway0 -c "sudo su - hdfs -c 'hadoop fs -mkdir -p /user/vagrant'" && \
 vagrant ssh gateway0 -c "sudo su - hdfs -c 'hadoop fs -chown vagrant:vagrant /user/vagrant'" && \
