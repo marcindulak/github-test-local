@@ -5,6 +5,10 @@ mkdir ~/github/test
 cd ~/github/test
 STATUS='OK'
 sh ~/github/clean-each.sh
+sh ~/github/vagrant-mariadb-galera-tutorial-centos7.sh > ~/github/vagrant-mariadb-galera-tutorial-centos7.txt 2>&1
+if ! test $? -eq 0; then echo | mailx -A ~/github/vagrant-mariadb-galera-tutorial-centos7.txt -s 'github FAIL: vagrant-mariadb-galera-tutorial-centos7' ${EMAIL}; STATUS='FAIL'; fi
+#
+sh ~/github/clean-each.sh
 sh ~/github/vagrant-hadoop-hortonworks-tutorial-centos7.sh > ~/github/vagrant-hadoop-hortonworks-tutorial-centos7.txt 2>&1
 if ! test $? -eq 0; then echo | mailx -A ~/github/vagrant-hadoop-hortonworks-tutorial-centos7.txt -s 'github FAIL: vagrant-hadoop-hortonworks-tutorial-centos7' ${EMAIL}; STATUS='FAIL'; fi
 #
