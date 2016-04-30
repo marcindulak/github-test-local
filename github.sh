@@ -29,8 +29,8 @@ sh ~/github/irods-tutorial-centos6.sh > ~/github/irods-tutorial-centos6.txt 2>&1
 if ! test $? -eq 0; then echo | mailx -A ~/github/irods-tutorial-centos6.txt -s 'github FAIL: irods-tutorial-centos6' ${EMAIL}; STATUS='FAIL'; fi
 #
 sh ~/github/clean-each.sh
-sh ~/github/vagrant-lustre-tutorial.sh > ~/github/vagrant-lustre-tutorial.txt 2>&1
-if ! test $? -eq 0; then echo | mailx -A ~/github/vagrant-lustre-tutorial.txt -s 'github FAIL: vagrant-lustre-tutorial' ${EMAIL}; STATUS='FAIL'; fi
+sh ~/github/vagrant-lustre-tutorial-centos6.sh > ~/github/vagrant-lustre-tutorial-centos6.txt 2>&1
+if ! test $? -eq 0; then echo | mailx -A ~/github/vagrant-lustre-tutorial-centos6.txt -s 'github FAIL: vagrant-lustre-tutorial-centos6' ${EMAIL}; STATUS='FAIL'; fi
 #
 sh ~/github/clean-each.sh
 sh ~/github/vagrant-xymon-tutorial.sh > ~/github/vagrant-xymon-tutorial.txt 2>&1

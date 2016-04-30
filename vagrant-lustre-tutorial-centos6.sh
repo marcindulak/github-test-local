@@ -1,5 +1,5 @@
-git clone https://github.com/marcindulak/vagrant-lustre-tutorial.git && \
-cd vagrant-lustre-tutorial && \
+git clone https://github.com/marcindulak/vagrant-lustre-tutorial-centos6.git && \
+cd vagrant-lustre-tutorial-centos6 && \
 vagrant plugin install vagrant-reload && \
 vagrant up mds01 mds02 oss01 oss02 centos7 && \
 vagrant ssh centos7 -c "sudo su -c 'lctl dl'" && \
