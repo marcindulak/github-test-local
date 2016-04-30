@@ -24,7 +24,6 @@ vagrant ssh centos7 -c "sudo su -c '. /etc/profile.d/modules.sh; module load mpi
 vagrant ssh centos7 -c "sudo su -c '. /etc/profile.d/modules.sh; module load mpi; mpirun --allow-run-as-root -np 1 --bynode ior-3.0.1/src/ior -v -a POSIX -i5 -g -e -w -r 512m -b 4m -o /lustre/testfile -F -C -b 256k -t 4k -O lustreStripeCount=1 -z random'" && \
 vagrant up centos6 centos6_lustre18 ubuntu12 && \
 vagrant ssh centos6 -c "sudo su -c 'lfs df -h'" && \
-vagrant ssh centos6_lustre18 -c "sudo su -c 'lfs df -h'" && \
 vagrant ssh centos6 -c "sudo su -c 'mkdir /lustre/vagrant'" && \
 vagrant ssh centos6 -c "sudo su -c 'chown vagrant.vagrant /lustre/vagrant'" && \
 vagrant ssh centos6 -c "sudo su - vagrant -c 'touch /lustre/vagrant/testfile'" && \
