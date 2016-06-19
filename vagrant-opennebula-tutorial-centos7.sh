@@ -2,9 +2,9 @@ git clone https://github.com/marcindulak/vagrant-opennebula-tutorial-centos7.git
 cd vagrant-opennebula-tutorial-centos7 && \
 vagrant plugin install vagrant-libvirt && \
 vagrant up --no-parallel && \
-vagrant ssh frontend -c "sudo su - oneadmin -c 'onehost create node1 -i kvm -v kvm -n dummy'" && \
+vagrant ssh frontend -c "sudo su - oneadmin -c 'onehost create node1 -i kvm -v kvm'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onehost list'" && \
-vagrant ssh frontend -c "sudo su - oneadmin -c 'echo NAME = private > mynetwork.one; echo BRIDGE = br1 >> mynetwork.one; echo AR = [TYPE = IP4, IP = 192.168.10.100, SIZE = 3] >> mynetwork.one'" && \
+vagrant ssh frontend -c "sudo su - oneadmin -c 'echo NAME = private > mynetwork.one; echo VN_MAD = dummy >> mynetwork.one; echo BRIDGE = br1 >> mynetwork.one; echo AR = [TYPE = IP4, IP = 192.168.10.100, SIZE = 3] >> mynetwork.one'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onevnet list'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onevnet create mynetwork.one'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onevnet list'" && \
