@@ -8,7 +8,7 @@ vagrant ssh centos6 -c "sudo su -c 'cd /etc/munin/plugins/; ln -s /usr/share/mun
 vagrant ssh centos6 -c "sudo su -c 'cd /etc/munin/plugins/; ln -s /usr/share/munin/plugins/apache_volume'" && \
 vagrant ssh centos6 -c "sudo su -c 'echo \"[apache_*]\" > /etc/munin/plugin-conf.d/apache'" && \
 vagrant ssh centos6 -c "sudo su -c 'service munin-node reload'" && \
-vagrant ssh centos6 -c "sudo su -c 'service httpd start'" && \
+vagrant ssh centos6 -c "sudo su -c 'service httpd start; service httpd restart'" && \
 sleep 360 && \
 vagrant ssh centos6 -c "sudo su -c 'curl http://localhost/'" && \
 vagrant destroy -f
