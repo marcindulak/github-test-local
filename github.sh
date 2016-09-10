@@ -4,6 +4,11 @@ rm -rf ~/github/test
 mkdir ~/github/test
 cd ~/github/test
 STATUS='OK'
+## tests below
+sh -x ~/github/clean-each.sh
+sh -x ~/github/vagrant-vagrant-CaltechDelftX-QuCryptox.sh > ~/github/vagrant-vagrant-CaltechDelftX-QuCryptox.txt 2>&1
+if ! test $? -eq 0; then echo | mailx -a ~/github/vagrant-vagrant-CaltechDelftX-QuCryptox.txt -s 'github FAIL: vagrant-vagrant-CaltechDelftX-QuCryptox' ${EMAIL}; STATUS='FAIL'; fi
+#
 sh -x ~/github/clean-each.sh
 sh -x ~/github/vagrant-mariadb-galera-tutorial-centos7.sh > ~/github/vagrant-mariadb-galera-tutorial-centos7.txt 2>&1
 if ! test $? -eq 0; then echo | mailx -a ~/github/vagrant-mariadb-galera-tutorial-centos7.txt -s 'github FAIL: vagrant-mariadb-galera-tutorial-centos7' ${EMAIL}; STATUS='FAIL'; fi
