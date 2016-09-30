@@ -1,3 +1,4 @@
+rm -f ~/.config/VirtualBox/VirtualBox.xml
 rm -rf ~/VirtualBox\ VMs/*
 rm -rf ~/.vagrant.d/boxes/*
 rm -rf ~/github/test
@@ -5,6 +6,10 @@ mkdir ~/github/test
 cd ~/github/test
 STATUS='OK'
 ## tests below
+sh -x ~/github/clean-each.sh
+sh -x ~/github/VMware-vSphere-Perl-SDK-rpm-centos.sh > ~/github/VMware-vSphere-Perl-SDK-rpm-centos.txt 2>&1
+if ! test $? -eq 0; then echo | mailx -a ~/github/VMware-vSphere-Perl-SDK-rpm-centos.txt -s 'github FAIL: VMware-vSphere-Perl-SDK-rpm-centos' ${EMAIL}; STATUS='FAIL'; fi
+#
 sh -x ~/github/clean-each.sh
 sh -x ~/github/vagrant-CaltechDelftX-QuCryptox.sh > ~/github/vagrant-CaltechDelftX-QuCryptox.txt 2>&1
 if ! test $? -eq 0; then echo | mailx -a ~/github/vagrant-CaltechDelftX-QuCryptox.txt -s 'github FAIL: vagrant-CaltechDelftX-QuCryptox' ${EMAIL}; STATUS='FAIL'; fi
