@@ -1,7 +1,10 @@
 git clone https://github.com/marcindulak/vagrant-lustre-tutorial-centos6.git && \
 cd vagrant-lustre-tutorial-centos6 && \
-vagrant plugin install vagrant-reload && \
-vagrant up mds01 mds02 oss01 oss02 centos7 && \
+vagrant up mds01 && sleep 10 && vagrant reload mds01 && \
+vagrant up mds02 && sleep 10 && vagrant reload mds02 && \
+vagrant up oss01 && sleep 10 && vagrant reload oss01 && \
+vagrant up oss02 && sleep 10 && vagrant reload oss02 && \
+vagrant up centos7 && sleep 10 && vagrant reload centos7 && \
 vagrant ssh centos7 -c "sudo su -c 'lctl dl'" && \
 vagrant ssh centos7 -c "sudo su -c 'lfs osts'" && \
 vagrant ssh centos7 -c "sudo su -c 'dd if=/dev/zero of=/lustre/testfile bs=1M count=512'" && \
@@ -23,6 +26,7 @@ vagrant ssh centos7 -c "sudo su -c '. /etc/profile.d/modules.sh; module load mpi
 vagrant ssh centos7 -c "sudo su -c '. /etc/profile.d/modules.sh; module load mpi; cd ior-3.0.1; make'" && \
 vagrant ssh centos7 -c "sudo su -c '. /etc/profile.d/modules.sh; module load mpi; mpirun --allow-run-as-root -np 1 --map-by node ior-3.0.1/src/ior -v -a POSIX -i5 -g -e -w -r 512m -b 4m -o /lustre/testfile -F -C -b 256k -t 4k -O lustreStripeCount=1 -z random'" && \
 vagrant up centos6 centos6_lustre18 ubuntu12 && \
+vagrant reload centos6 centos6_lustre18 ubuntu12 && \
 vagrant ssh centos6 -c "sudo su -c 'lfs df -h'" && \
 vagrant ssh centos6 -c "sudo su -c 'mkdir /lustre/vagrant'" && \
 vagrant ssh centos6 -c "sudo su -c 'chown vagrant.vagrant /lustre/vagrant'" && \
