@@ -1,6 +1,6 @@
 git clone https://github.com/marcindulak/vagrant-hadoop-hortonworks-tutorial-centos7.git && \
 cd vagrant-hadoop-hortonworks-tutorial-centos7 && \
-vagrant up && \
+CONTROLLER=IDE vagrant up && \
 vagrant ssh slave0 -c "sudo su - -c 'mkfs.ext4 -F /dev/sdb'" && \
 vagrant ssh slave0 -c "sudo su - -c 'echo /dev/sdb /hdfs-vagrant/data ext4 defaults,noatime >> /etc/fstab'" && \
 vagrant ssh slave0 -c "sudo su - -c 'mkdir -p /hdfs-vagrant/data'" && \

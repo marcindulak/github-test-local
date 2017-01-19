@@ -1,6 +1,6 @@
 git clone https://github.com/marcindulak/vagrant-ceph-rbd-tutorial-centos7.git && \
 cd vagrant-ceph-rbd-tutorial-centos7 && \
-vagrant up && \
+CONTROLLER=IDE vagrant up && \
 vagrant ssh server0 -c "sudo su - ceph -c 'ceph-deploy new server{0,1,2}'" && \
 vagrant ssh server0 -c "sudo su - ceph -c 'echo public_network = 192.168.10.0/24 >> ceph.conf'" && \
 vagrant ssh server0 -c "sudo su - ceph -c 'echo cluster_network = 192.168.10.0/24 >> ceph.conf'" && \
@@ -23,7 +23,7 @@ vagrant ssh server2 -c "sudo su - ceph -c 'ceph df'" && \
 vagrant ssh server1 -c "sudo su - -c 'shutdown -h now'" && \
 sleep 30 && \
 vagrant ssh server2 -c "sudo su - ceph -c 'ceph status'" && \
-vagrant up server1 && \
+CONTROLLER=IDE vagrant up server1 && \
 sleep 30 && \
 vagrant ssh server1 -c "sudo su - ceph -c 'ceph status'" && \
 vagrant ssh server0 -c "sudo su - ceph -c 'ceph-deploy --release infernalis client0'" && \
