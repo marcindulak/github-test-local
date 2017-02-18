@@ -20,16 +20,17 @@ vagrant ssh server2 -c "sudo su - ceph -c 'sudo chmod +r /etc/ceph/ceph.client.a
 vagrant ssh server0 -c "sudo su - ceph -c 'ceph health'" && \
 vagrant ssh server1 -c "sudo su - ceph -c 'ceph status'" && \
 vagrant ssh server2 -c "sudo su - ceph -c 'ceph df'" && \
-vagrant ssh server1 -c "sudo su - -c 'shutdown -h now'" && \
+! vagrant ssh server1 -c "sudo su - -c 'shutdown -h now'" && \
 sleep 30 && \
 vagrant ssh server2 -c "sudo su - ceph -c 'ceph status'" && \
 CONTROLLER=IDE vagrant up server1 && \
 sleep 30 && \
 vagrant ssh server1 -c "sudo su - ceph -c 'ceph status'" && \
-vagrant ssh server0 -c "sudo su - ceph -c 'ceph-deploy --release luminous client0'" && \
+vagrant ssh server0 -c "sudo su - ceph -c 'ceph-deploy install --release luminous client0'" && \
 vagrant ssh server0 -c "sudo su - ceph -c 'ceph-deploy admin client0'" && \
 vagrant ssh client0 -c "sudo su - ceph -c 'sudo chmod +r /etc/ceph/ceph.client.admin.keyring'" && \
 vagrant ssh client0 -c "sudo su - ceph -c 'rbd create rbd0 --size 128 -m server0,server1,server2 -k /etc/ceph/ceph.client.admin.keyring'" && \
+vagrant ssh client0 -c "sudo su - ceph -c 'rbd feature disable rbd0 exclusive-lock object-map fast-diff deep-flatten'" && \
 vagrant ssh client0 -c "sudo su - ceph -c 'sudo rbd map rbd0 --name client.admin -m server0,server1,server2 -k /etc/ceph/ceph.client.admin.keyring'" && \
 vagrant ssh client0 -c "sudo su - -c 'mkfs.xfs -L rbd0 /dev/rbd0'" && \
 vagrant ssh client0 -c "sudo su - -c 'mkdir /mnt/rbd0'" && \
