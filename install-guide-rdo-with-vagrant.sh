@@ -27,6 +27,6 @@ vagrant ssh controller -c "source /root/demo-openrc&& openstack volume list" && 
 vagrant ssh controller -c "source /root/demo-openrc&& openstack server add volume selfservice-instance volume1" && \
 sleep 30 && \
 vagrant ssh controller -c "source /root/demo-openrc&& openstack volume list" && \
-vagrant ssh controller -c 'source /root/demo-openrc&& ssh -i ~vagrant/.ssh/id_rsa -o StrictHostKeyChecking=no cirros@`openstack server show selfservice-instance -f json -c addresses |  jq ".addresses" | tr -d \" | tr -d " " | cut -d, -f2` sudo fdisk -l /dev/vdb' && \
+vagrant ssh controller -c 'source /root/demo-openrc&& ssh -i ~vagrant/.ssh/id_rsa -o StrictHostKeyChecking=no cirros@`openstack server show selfservice-instance -f json -c addresses |  jq ".addresses" | tr -d \" | tr -d " " | cut -d, -f2` sudo /sbin/fdisk -l /dev/vdb' && \
 vagrant ssh controller -c 'sudo su - vagrant -c "pageres http://controller/dashboard/admin/networks/ --cookie=\"$(sh /vagrant/get_horizon_session_cookie.sh)\""' && \
 vagrant destroy -f
