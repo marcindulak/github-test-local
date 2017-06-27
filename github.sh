@@ -7,6 +7,18 @@ cd ~/github/test
 STATUS='OK'
 ## tests below
 sh -x ~/github/clean-each.sh
+sh -x ~/github/vagrant-haproxy-pcs-ansible-tutorial-centos7.sh > ~/github/vagrant-haproxy-pcs-ansible-tutorial-centos7.txt 2>&1
+if ! test $? -eq 0; then echo | mailx -a ~/github/vagrant-haproxy-pcs-ansible-tutorial-centos7.txt -s 'github FAIL: vagrant-haproxy-pcs-ansible-tutorial-centos7' ${EMAIL}; STATUS='FAIL'; fi
+#
+sh -x ~/github/clean-each.sh
+sh -x ~/github/install-guide-rdo-with-vagrant.sh > ~/github/install-guide-rdo-with-vagrant.txt 2>&1
+if ! test $? -eq 0; then echo | mailx -a ~/github/install-guide-rdo-with-vagrant.txt -s 'github FAIL: install-guide-rdo-with-vagrant' ${EMAIL}; STATUS='FAIL'; fi
+#
+sh -x ~/github/clean-each.sh
+sh -x ~/github/minishift-quickstart-with-vagrant-centos7.sh > ~/github/minishift-quickstart-with-vagrant-centos7.txt 2>&1
+if ! test $? -eq 0; then echo | mailx -a ~/github/minishift-quickstart-with-vagrant-centos7.txt -s 'github FAIL: minishift-quickstart-with-vagrant-centos7' ${EMAIL}; STATUS='FAIL'; fi
+#
+sh -x ~/github/clean-each.sh
 sh -x ~/github/VMware-vSphere-Perl-SDK-rpm-centos.sh > ~/github/VMware-vSphere-Perl-SDK-rpm-centos.txt 2>&1
 if ! test $? -eq 0; then echo | mailx -a ~/github/VMware-vSphere-Perl-SDK-rpm-centos.txt -s 'github FAIL: VMware-vSphere-Perl-SDK-rpm-centos' ${EMAIL}; STATUS='FAIL'; fi
 #
