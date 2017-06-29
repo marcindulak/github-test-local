@@ -8,7 +8,7 @@ vagrant up || : && \
 sleep 30 && \
 vagrant ssh mgt1.mydomain -c "curl -sgG --data-urlencode query='up{instance=~\"app.*\", job=\"node_exporter\"}' localhost:9090/api/v1/query | python -m json.tool" && \
 vagrant ssh mgt1.mydomain -c "ansible-playbook -i /vagrant/ansible/hosts.yml /vagrant/ansible/playbook.yml" || : && \
-vagrant provision mgt1.mydomain && \
+vagrant provision mgt1.mydomain || : && \
 vagrant ssh mgt1.mydomain -c "curl loadbalancer:80" && \
 curl localhost:40080 && \
 vagrant ssh mgt1.mydomain -c "curl app1:8080" && \
