@@ -8,7 +8,7 @@ vagrant ssh frontend -c "sudo su - oneadmin -c 'echo NAME = private > mynetwork.
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onevnet list'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onevnet create mynetwork.one'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onevnet list'" && \
-vagrant ssh frontend -c "sudo su - oneadmin -c 'oneimage create --name ttylinux --path http://marketplace.c12g.com/appliance/4fc76a938fb81d3517000003/download -d default'" && \
+vagrant ssh frontend -c "sudo su - oneadmin -c 'oneimage create --name ttylinux --path http://marketplace.c12g.com/appliance/4fc76a938fb81d3517000003/download --datastore default --prefix hd'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'oneimage list'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onetemplate create --name ttylinux --cpu 1 --vcpu 1 --memory 127 --arch x86_64 --disk ttylinux --nic private --vnc --ssh --net_context'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onetemplate list'" && \
