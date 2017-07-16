@@ -41,7 +41,7 @@ vagrant ssh client0 -c "echo \"INSERT INTO vagrant.cluster (node) VALUES ('fail2
 vagrant ssh node0 -c "echo \"SELECT node FROM vagrant.cluster;\" | mysql --user=root --password=ROOT_PASSWORD" | grep -q fail2 && \
 CONTROLLER=IDE vagrant up && \
 vagrant ssh node0 -c "sudo su - -c 'cat /var/lib/mysql/grastate.dat'" | grep "seqno:" | grep -q "\-1" && \
-vagrant ssh node1 -c "sudo su - -c 'cat /var/lib/mysql/grastate.dat'" | grep "seqno:" | grep -q "\-1" && \
+vagrant ssh node1 -c "sudo su - -c 'cat /var/lib/mysql/grastate.dat'" | grep "seqno:" | grep -q "7" && \
 vagrant ssh node2 -c "sudo su - -c 'cat /var/lib/mysql/grastate.dat'" | grep "seqno:" | grep -q "7" && \
 vagrant ssh node1 -c "sudo su - -c 'systemctl start mariadb'" && \
 vagrant ssh node1 -c "echo \"SELECT node FROM vagrant.cluster;\" | mysql --user=root --password=ROOT_PASSWORD" | grep -q fail2 && \
