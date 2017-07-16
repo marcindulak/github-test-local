@@ -6,5 +6,6 @@ vagrant ssh centos6 -c "sudo su -c 'yum install -y httpd'" && \
 vagrant ssh centos6 -c "sudo su -c 'service httpd start'" && \
 vagrant ssh centos6 -c "sudo su -c 'touch /var/www/html/index.html'" && \
 vagrant ssh centos6 -c "sudo su -c 'chown apache.apache /var/www/html/index.html'" && \
+vagrant ssh centos6 -c "sudo su -c 'rm -f /var/lock/subsys/httpd'" && \
 vagrant ssh centos6 -c "sudo su -c 'service httpd reload'" && \
 vagrant destroy -f
