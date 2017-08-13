@@ -4,6 +4,15 @@ vagrant plugin install vagrant-libvirt && \
 vagrant up --no-parallel && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onehost create node1 -i kvm -v kvm'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onehost list'" && \
+vagrant ssh frontend -c "sudo su - oneadmin -c 'onedatastore list'" && \
+vagrant ssh frontend -c "sudo su - oneadmin -c 'echo NAME = system > system.one&& echo TM_MAD = shared >> system.one&& echo TYPE = SYSTEM_DS >> system.one'" && \
+vagrant ssh frontend -c "sudo su - oneadmin -c 'onedatastore update system system.one'" && \
+vagrant ssh frontend -c "sudo su - oneadmin -c 'onedatastore list'" && \
+vagrant ssh frontend -c "sudo su - oneadmin -c 'echo NAME = default > default.one&& echo DS_MAD = fs >> default.one&& echo TM_MAD = shared >> default.one'" && \
+vagrant ssh frontend -c "sudo su - oneadmin -c 'onedatastore update default default.one'" && \
+vagrant ssh frontend -c "sudo su - oneadmin -c 'echo NAME = files > files.one&& echo DS_MAD = fs >> files.one&& echo TM_MAD = shared >> files.one && echo TYPE = FILE_DS >> files.one'" && \
+vagrant ssh frontend -c "sudo su - oneadmin -c 'onedatastore update files files.one'" && \
+vagrant ssh frontend -c "sudo su - oneadmin -c 'onedatastore list'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'echo NAME = private > private.one; echo VN_MAD = dummy >> private.one; echo BRIDGE = br1 >> private.one; echo AR = [TYPE = IP4, IP = 192.168.10.100, SIZE = 3] >> private.one'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onevnet list'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onevnet create private.one'" && \
