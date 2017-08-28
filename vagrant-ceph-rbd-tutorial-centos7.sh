@@ -1,6 +1,6 @@
 git clone https://github.com/marcindulak/vagrant-ceph-rbd-tutorial-centos7.git && \
 cd vagrant-ceph-rbd-tutorial-centos7 && \
-CONTROLLER=IDE vagrant up && \
+RELEASE=kraken CONTROLLER=IDE vagrant up && \
 vagrant ssh server0 -c "sudo su - ceph -c 'ceph-deploy new server{0,1,2}'" && \
 vagrant ssh server0 -c "sudo su - ceph -c 'echo public_network = 192.168.10.0/24 >> ceph.conf'" && \
 vagrant ssh server0 -c "sudo su - ceph -c 'echo cluster_network = 192.168.10.0/24 >> ceph.conf'" && \
@@ -26,7 +26,7 @@ vagrant ssh server2 -c "sudo su - ceph -c 'ceph status'" && \
 CONTROLLER=IDE vagrant up server1 && \
 sleep 30 && \
 vagrant ssh server1 -c "sudo su - ceph -c 'ceph status'" && \
-vagrant ssh server0 -c "sudo su - ceph -c 'ceph-deploy install --release luminous client0'" && \
+vagrant ssh server0 -c "sudo su - ceph -c 'ceph-deploy install --release kraken client0'" && \
 vagrant ssh server0 -c "sudo su - ceph -c 'ceph-deploy admin client0'" && \
 vagrant ssh client0 -c "sudo su - ceph -c 'sudo chmod +r /etc/ceph/ceph.client.admin.keyring'" && \
 vagrant ssh client0 -c "sudo su - ceph -c 'rbd create rbd0 --size 128 -m server0,server1,server2 -k /etc/ceph/ceph.client.admin.keyring'" && \
