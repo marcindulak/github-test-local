@@ -6,6 +6,7 @@ vagrant ssh server0 -c "sudo su - ceph -c 'echo public_network = 192.168.10.0/24
 vagrant ssh server0 -c "sudo su - ceph -c 'echo cluster_network = 192.168.10.0/24 >> ceph.conf'" && \
 vagrant ssh server0 -c "sudo su - ceph -c 'echo [osd] >> ceph.conf'" && \
 vagrant ssh server0 -c "sudo su - ceph -c 'echo osd_journal_size = 0 >> ceph.conf'" && \
+vagrant ssh server0 -c "sudo su - ceph -c \"sed -i '/\[global\]/adebug bluestore = 20' ceph.conf\"" && \
 vagrant ssh server0 -c "sudo su - ceph -c 'ceph-deploy mon create server{0,1,2}'" && \
 sleep 30 && \
 vagrant ssh server0 -c "sudo su - ceph -c 'ceph-deploy gatherkeys server0'" && \
@@ -17,6 +18,7 @@ vagrant ssh server0 -c "sudo su - ceph -c 'ceph-deploy osd activate server0:/dev
 vagrant ssh server0 -c "sudo su - ceph -c 'sudo chmod +r /etc/ceph/ceph.client.admin.keyring'" && \
 vagrant ssh server1 -c "sudo su - ceph -c 'sudo chmod +r /etc/ceph/ceph.client.admin.keyring'" && \
 vagrant ssh server2 -c "sudo su - ceph -c 'sudo chmod +r /etc/ceph/ceph.client.admin.keyring'" && \
+vagrant ssh server0 -c "sudo su - -c 'ceph-disk list'" && \
 vagrant ssh server0 -c "sudo su - ceph -c 'ceph health'" && \
 vagrant ssh server1 -c "sudo su - ceph -c 'ceph status'" && \
 vagrant ssh server2 -c "sudo su - ceph -c 'ceph df'" && \
