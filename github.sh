@@ -7,6 +7,10 @@ cd ~/github/test
 STATUS='OK'
 ## tests below
 sh -x ~/github/clean-each.sh
+sh -x ~/github/vagrant-opennebula-ha-tutorial-centos7.sh > ~/github/vagrant-opennebula-ha-tutorial-centos7.txt 2>&1
+if ! test $? -eq 0; then echo | mailx -a ~/github/vagrant-opennebula-ha-tutorial-centos7.txt -s 'github FAIL: vagrant-opennebula-ha-tutorial-centos7' ${EMAIL}; STATUS='FAIL'; fi
+#
+sh -x ~/github/clean-each.sh
 sh -x ~/github/vagrant-haproxy-pcs-ansible-tutorial-centos7.sh > ~/github/vagrant-haproxy-pcs-ansible-tutorial-centos7.txt 2>&1
 if ! test $? -eq 0; then echo | mailx -a ~/github/vagrant-haproxy-pcs-ansible-tutorial-centos7.txt -s 'github FAIL: vagrant-haproxy-pcs-ansible-tutorial-centos7' ${EMAIL}; STATUS='FAIL'; fi
 #
