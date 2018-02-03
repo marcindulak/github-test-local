@@ -13,7 +13,7 @@ vagrant ssh frontend -c "sudo su - oneadmin -c 'onedatastore update default defa
 vagrant ssh frontend -c "sudo su - oneadmin -c 'echo NAME = files > files.one&& echo DS_MAD = fs >> files.one&& echo TM_MAD = shared >> files.one && echo TYPE = FILE_DS >> files.one'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onedatastore update files files.one'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onedatastore list'" && \
-vagrant ssh frontend -c "sudo su - oneadmin -c 'echo NAME = private > private.one; echo VN_MAD = dummy >> private.one; echo BRIDGE = br1 >> private.one; echo AR = [TYPE = IP4, IP = 192.168.10.100, SIZE = 3] >> private.one'" && \
+vagrant ssh frontend -c "sudo su - oneadmin -c 'echo NAME = private > private.one; echo VN_MAD = dummy >> private.one; echo BRIDGE = br1 >> private.one; echo DNS = 8.8.8.8 >> private.one; echo GATEWAY = 192.168.10.5 >> private.one; echo AR = [TYPE = IP4, IP = 192.168.10.100, SIZE = 3] >> private.one'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onevnet list'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onevnet create private.one'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onevnet list'" && \
@@ -22,7 +22,8 @@ vagrant ssh frontend -c "sudo su - oneadmin -c 'oneimage list'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onetemplate create --name testvm --cpu 1 --vcpu 1 --memory 256 --arch x86_64 --disk testvm --nic private --vnc --ssh --net_context'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onetemplate list'" && \
 sleep 30 && \
-vagrant ssh frontend -c "sudo su - oneadmin -c 'echo CONTEXT = [ USERNAME = root, PASSWORD = password, NETWORK = YES ] > context.one'" && \
+vagrant ssh frontend -c "sudo su - oneadmin -c 'cp /vagrant/context.one .'" && \
+vagrant ssh frontend -c "sudo su - oneadmin -c 'chmod o-rwx context.one'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onetemplate update testvm -a context.one'" && \
 vagrant ssh frontend -c "sudo su - oneadmin -c 'onetemplate instantiate testvm'" && \
 sleep 300 && \
@@ -35,4 +36,5 @@ vagrant ssh frontend -c "sudo su - oneadmin -c 'onevm show 0'" && \
 vagrant ssh node1 -c "sudo su - -c 'virsh dumpxml one-0'" && \
 vagrant ssh frontend -c "sudo su - -c 'yum -y install sshpass'" && \
 vagrant ssh frontend -c "sshpass -p password ssh -o StrictHostKeyChecking=no root@192.168.10.100 '/sbin/ifconfig'" && \
+vagrant ssh frontend -c "sshpass -p password ssh -o StrictHostKeyChecking=no root@192.168.10.100 'ping -c 3 -W 1 192.168.10.5'" && \
 vagrant destroy -f
